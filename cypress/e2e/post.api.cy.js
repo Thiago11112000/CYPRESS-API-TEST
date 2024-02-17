@@ -14,7 +14,7 @@ describe('Cadastrar dispositivos', () => {
     it('Cadastrar um dispositivo', () => {
         cy.request({
             method: 'post',
-            url: `https://api.restful-api.dev/objects`,
+            url: `/objects`,
             failOnStatusCode: false,
             body: body
             }).as('postDeviceResult')
@@ -28,10 +28,10 @@ describe('Cadastrar dispositivos', () => {
 
             })
     });
-    it.only('Cadastrar um dispositivo sem mandar dados', () => {
+    it('Cadastrar um dispositivo sem mandar dados', () => {
         cy.request({
             method: 'post',
-            url: `https://api.restful-api.dev/objects`,
+            url: `/objects`,
             failOnStatusCode: false,
             body: ''
             }).as('postDeviceResult')
