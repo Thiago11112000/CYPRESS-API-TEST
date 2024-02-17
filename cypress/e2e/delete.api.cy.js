@@ -2,16 +2,14 @@
 
 describe('Deletar dispositivos', () => {
 
-    const body = {
-        "name": "Samsung Galaxy GO",
-        "data": {
-            "price": 800.00,
-            "color": "White"
-        }
-    }
-
-    
     it('Deletar  um dispositivo', () => {
+        const body = {
+            "name": "Samsung Galaxy GO",
+            "data": {
+                "price": 800.00,
+                "color": "White"
+            }
+        }
         cy.request({
             method: 'post',
             url: `https://api.restful-api.dev/objects`,
@@ -34,4 +32,20 @@ describe('Deletar dispositivos', () => {
 
 
     })
+    it('Deletar  um dispositivo não existente', () => {
+
+        const  id_inexistente = 'thiago'
+        cy.request({
+            method: 'Delete',
+            failOnStatusCode:false,
+            url: `https://api.restful-api.dev/objects/${id_inexistente}`,
+        }).as('deletDeviceResult')
+    
+
+        cy.get('@deletDeviceResult').then((response_del) =>{
+          expect(response_del.status).equals(404)
+          expect(response_del.body.error).equals(`Object with id = ${id_inexistente} doesn't exist.`)
+    
+    })
+})
 })

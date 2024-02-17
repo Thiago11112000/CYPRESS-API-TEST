@@ -28,4 +28,18 @@ describe('Cadastrar dispositivos', () => {
 
             })
     });
+    it.only('Cadastrar um dispositivo sem mandar dados', () => {
+        cy.request({
+            method: 'post',
+            url: `https://api.restful-api.dev/objects`,
+            failOnStatusCode: false,
+            body: ''
+            }).as('postDeviceResult')
+ 
+            cy.get('@postDeviceResult').then((response) =>{
+             expect(response.status).equals(400)
+             expect(response.body.error).equal('400 Bad Request. If you are trying to create or update the data, potential issue is that you are sending incorrect body json or it is missing at all.')
+
+            })
+    });
 });
