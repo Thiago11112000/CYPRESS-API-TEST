@@ -10,13 +10,7 @@ describe('Deletar dispositivos', () => {
                 "color": "White"
             }
         }
-        cy.request({
-            method: 'post',
-            url: `/objects`,
-            failOnStatusCode: false,
-            body: body
-            }).as('postDeviceResult')
-            cy.get('@postDeviceResult').then((response) =>{
+       cy.cadastrarDevice(body).then((response) =>{
                 expect(response.status).equals(200)
    
         cy.request({

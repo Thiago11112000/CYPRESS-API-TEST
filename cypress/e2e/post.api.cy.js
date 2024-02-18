@@ -9,17 +9,11 @@ describe('Cadastrar dispositivos', () => {
             "color": "White"
         }
     }
-
+   
     
     it('Cadastrar um dispositivo', () => {
-        cy.request({
-            method: 'post',
-            url: `/objects`,
-            failOnStatusCode: false,
-            body: body
-            }).as('postDeviceResult')
- 
-            cy.get('@postDeviceResult').then((response) =>{
+       
+        cy.cadastrarDevice(body).then((response) =>{
              expect(response.status).equals(200)
              expect(response.body.id).not.empty
              expect(response.body.createdAt).not.empty
@@ -29,17 +23,10 @@ describe('Cadastrar dispositivos', () => {
             })
     });
     it('Cadastrar um dispositivo sem mandar dados', () => {
-        cy.request({
-            method: 'post',
-            url: `/objects`,
-            failOnStatusCode: false,
-            body: ''
-            }).as('postDeviceResult')
- 
-            cy.get('@postDeviceResult').then((response) =>{
+     cy.cadastrarDevice().then((response) =>{
              expect(response.status).equals(400)
              expect(response.body.error).equal('400 Bad Request. If you are trying to create or update the data, potential issue is that you are sending incorrect body json or it is missing at all.')
 
             })
-    });
-});
+    })
+})

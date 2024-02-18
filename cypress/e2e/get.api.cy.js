@@ -3,15 +3,8 @@
 
 describe('Buscar dispositivos', () => {
     it('Buscar um dispositivo específico', () => {
-        const device_id  = '5'
-        cy.request({
-            method: 'GET',
-            url: `https://api.restful-api.dev/objects/${device_id}`,
-            failOnStatusCode: false
-        }).as('getDeviceResult')
-
-
-        cy.get('@getDeviceResult')
+        const device_id = '5'
+    cy.buscarDeviceEspecifico(device_id)
             .then((response)=>{
                expect(response.status).equal(200)
                expect(response.body.id).equal(device_id)
@@ -25,5 +18,14 @@ describe('Buscar dispositivos', () => {
 
                console.log(response)
         })
-    });
-});
+    })
+    it('Buscar um dispositivo inexiste', () => {
+        const device_id = 'xpto'
+    cy.buscarDeviceEspecifico(device_id)
+            .then((response)=>{
+               expect(response.status).equal(404)
+               expect(response.body.error).equal(`Oject with id=${device_id} was not found.`)
+               console.log(response)
+        })
+    })
+})
