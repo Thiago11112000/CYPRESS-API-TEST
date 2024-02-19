@@ -2,21 +2,9 @@
 
 describe('Alterar dispositivos', () => {
     const  dataAtual = new Date().toISOString().slice(0,10)
+    const body_cadastro = require('../fixtures/cadastar_device_sucesso.json')
+    const body_put = require('../fixtures/update_device_sucesso.json')
 
-    const body_cadastro = {
-        "name": "Samsung Galaxy GO",
-        "data": {
-            "price": 800.00,
-            "color": "White"
-        }
-    }
-    const body_put = {
-        "name": "Samsung Galaxy GO - Update",
-        "data": {
-            "price": 1500.00,
-            "color": "Purple"
-        }
-    }
 
 
     

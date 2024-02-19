@@ -2,13 +2,8 @@
 
 describe('Cadastrar dispositivos', () => {
     const  dataAtual = new Date().toISOString().slice(0,10)
-    const body = {
-        "name": "Samsung Galaxy GO",
-        "data": {
-            "price": 800.00,
-            "color": "White"
-        }
-    }
+    const body = require('../fixtures/cadastar_device_sucesso.json')
+    
    
     
     it('Cadastrar um dispositivo', () => {
